@@ -1,8 +1,7 @@
-
 {
   "name": "react-native-dynamic-bundle",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Control which bundle is loaded from the Javascript side of your React Native app.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,11 +9,21 @@
   "keywords": [
     "react-native"
   ],
-  "author": "",
-  "license": "",
+  "author": {
+    "name": "Maurits Dijkstra",
+    "email": "mauritsdijkstra@gmail.com"
+  },
+  "homepage": "https://github.com/mauritsd/react-native-dynamic-bundle",
+  "bugs": {
+    "url": "https://github.com/mauritsd/react-native-dynamic-bundle/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mauritsd/react-native-dynamic-bundle.git"
+  },
+  "license": "MIT",
   "peerDependencies": {
-    "react-native": "*",
-    "react": "*"
+    "react-native": "*"
   },
   "nativePackage": true
 }

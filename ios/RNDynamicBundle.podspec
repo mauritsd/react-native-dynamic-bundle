@@ -1,18 +1,17 @@
 
 Pod::Spec.new do |s|
   s.name         = "RNDynamicBundle"
-  s.version      = "1.0.0"
+  s.version      = "0.1.0"
   s.summary      = "RNDynamicBundle"
   s.description  = <<-DESC
                   RNDynamicBundle
                    DESC
   s.homepage     = ""
   s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-  s.author             = { "author" => "author@domain.cn" }
+  s.author       = { "author" => "mauritsdijkstra@gmail.com" }
   s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/author/RNDynamicBundle.git", :tag => "master" }
-  s.source_files  = "RNDynamicBundle/**/*.{h,m}"
+  s.source       = { :git => "https://github.com/mauritsd/react-native-dynamic-bundle.git", :tag => "master" }
+  s.source_files = "RNDynamicBundle/**/*.{h,m}"
   s.requires_arc = true
 
 
@@ -20,5 +19,3 @@ Pod::Spec.new do |s|
   #s.dependency "others"
 
 end
-
-  
