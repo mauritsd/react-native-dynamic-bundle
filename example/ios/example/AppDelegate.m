@@ -31,16 +31,7 @@
   RNDynamicBundle *tempDynamicBundle = [RNDynamicBundle new];
   [tempDynamicBundle registerBundle:@"__default" atURL:jsCodeLocation];
 
-  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:[tempDynamicBundle resolveBundleURL]
-                                            moduleProvider:nil
-                                             launchOptions:self.launchOptions];
-  RNDynamicBundle *dynamicBundle = [bridge moduleForClass:[RNDynamicBundle class]];
-  dynamicBundle.delegate = self;
-  
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"example"
-                                            initialProperties:nil];
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  RCTRootView *rootView = [self getRootViewForBundleURL:[tempDynamicBundle resolveBundleURL]];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
@@ -52,18 +43,23 @@
 
 - (void)dynamicBundle:(RNDynamicBundle *)dynamicBundle requestsReloadForBundleURL:(NSURL *)bundleURL
 {
+  self.window.rootViewController.view = [self getRootViewForBundleURL:bundleURL];
+}
+
+- (RCTRootView *)getRootViewForBundleURL:(NSURL *)bundleURL
+{
   RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:bundleURL
                                             moduleProvider:nil
                                              launchOptions:self.launchOptions];
-  RNDynamicBundle *newDynamicBundle = [bridge moduleForClass:[RNDynamicBundle class]];
-  newDynamicBundle.delegate = self;
+  RNDynamicBundle *dynamicBundle = [bridge moduleForClass:[RNDynamicBundle class]];
+  dynamicBundle.delegate = self;
   
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"example"
                                             initialProperties:nil];
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
   
-  self.window.rootViewController.view = rootView;
+  return rootView;
 }
 
 @end
