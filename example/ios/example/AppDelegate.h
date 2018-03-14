@@ -9,8 +9,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import <RNDynamicBundle.h>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RNDynamicBundleDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) NSDictionary *launchOptions;
 
 @end

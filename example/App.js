@@ -9,8 +9,10 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
 } from 'react-native';
+import RNDynamicBundle from 'react-native-dynamic-bundle';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,6 +23,10 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  componentWillMount = () => {
+
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -33,8 +39,15 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
+        <Button onPress={this._onReloadButtonPress} title="RELOAD"/>
       </View>
     );
+  }
+
+  _onReloadButtonPress = () =>{
+    // RNDynamicBundle.registerBundle('bla', 'test.jsbundle');
+    // RNDynamicBundle.setActiveBundle('bla');
+    RNDynamicBundle.reloadBundle();
   }
 }
 

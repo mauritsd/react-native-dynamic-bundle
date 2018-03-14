@@ -2993,8 +2993,9 @@ react-devtools-core@3.1.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-"react-native-dynamic-bundle@file:..":
+"react-native-dynamic-bundle@git+https://github.com/mauritsd/react-native-dynamic-bundle":
   version "1.0.0"
+  resolved "git+https://github.com/mauritsd/react-native-dynamic-bundle#2f640ac1a48f445a2e258f53c0200bc4dbcc0001"
 
 react-native@0.54.2:
   version "0.54.2"
