@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "^16.3.0-alpha.1",
+    "react-native": "0.54.2",
+    "react-native-dynamic-bundle": "git+https://github.com/mauritsd/react-native-dynamic-bundle"
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "4.0.0"
+  }
+}
