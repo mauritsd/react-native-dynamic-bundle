@@ -52,7 +52,7 @@
 
 - (void)dynamicBundle:(RNDynamicBundle *)dynamicBundle requestsReloadForBundleURL:(NSURL *)bundleURL
 {
-  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:[dynamicBundle resolveBundleURL]
+  RCTBridge *bridge = [[RCTBridge alloc] initWithBundleURL:bundleURL
                                             moduleProvider:nil
                                              launchOptions:self.launchOptions];
   RNDynamicBundle *newDynamicBundle = [bridge moduleForClass:[RNDynamicBundle class]];
