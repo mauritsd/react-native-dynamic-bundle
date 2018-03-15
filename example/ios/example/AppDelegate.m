@@ -23,15 +23,9 @@
   
   NSURL *jsCodeLocation;
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  [RNDynamicBundle setDefaultBundleURL:jsCodeLocation];
   
-  /* Need this for the initial init since RCTBridge will init RNDynamicBundle for us, leading
-   * to a circular dependency problem. We could init RNDynamicBundle for the bridge ourselves
-   * to sidestep this problem in a nicer way, but let's keep this example simple.
-   */
-  RNDynamicBundle *tempDynamicBundle = [RNDynamicBundle new];
-  [tempDynamicBundle registerBundle:@"__default" atURL:jsCodeLocation];
-
-  RCTRootView *rootView = [self getRootViewForBundleURL:[tempDynamicBundle resolveBundleURL]];
+  RCTRootView *rootView = [self getRootViewForBundleURL:[RNDynamicBundle resolveBundleURL]];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];

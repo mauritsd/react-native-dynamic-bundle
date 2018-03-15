@@ -17,15 +17,16 @@
 
 @property (weak) id<RNDynamicBundleDelegate> delegate;
 
++ (NSMutableDictionary *)loadRegistry;
++ (void)storeRegistry:(NSDictionary *)dict;
++ (NSURL *)resolveBundleURL;
++ (void)setDefaultBundleURL:(NSURL *)URL;
+
 - (void)reloadBundle;
 - (void)registerBundle:(NSString *)bundleId atRelativePath:(NSString *)path;
 - (void)unregisterBundle:(NSString *)bundleId;
 - (void)setActiveBundle:(NSString *)bundleId;
-
-- (NSURL *)resolveBundleURL;
 - (void)registerBundle:(NSString *)bundleId atURL:(NSURL *)URL;
-- (NSMutableDictionary *)loadRegistry;
-- (void)storeRegistry:(NSDictionary *)dict;
 
 @end
   
