@@ -42,7 +42,6 @@ public class MainApplication extends Application implements ReactApplication {
     @Nullable
     @Override
     protected String getJSBundleFile() {
-      Log.d("YOLOLO", RNDynamicBundleModule.launchResolveBundleUrl(MainApplication.this));
       return RNDynamicBundleModule.launchResolveBundleUrl(MainApplication.this);
     }
   };

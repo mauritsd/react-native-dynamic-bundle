@@ -53,9 +53,8 @@ public class MainActivity extends ReactActivity implements RNDynamicBundleModule
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                MainActivity.this.getReactNativeHost().clear();
+                MainActivity.this.recreate();
             }
         });
     }
