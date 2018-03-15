@@ -8,21 +8,22 @@ and CodePush, that allows you to change the React Native bundle loaded by
 an application without updating the application itself (i.e. through the App
 Store or Google Play). You could use this functionality to, for example:
 * Get app updates to users quicker.
-* Make A/B-testing or gradual rollouts less cumbersome.
+* Make A/B-testing or gradual rollouts as easy as on the web.
 
 react-native-dynamic-bundle differs from react-native-auto-updater and
-alternatives in that it does not attempt to be an end-to-end solution for
-updates or A/B testing, only providing the bare necessities for switching
-bundles and reloading the app. This means you will have to implement things
-like the update UI, a bundle downloader and fallback/safety mechanisms yourself.
+alternatives in that it does not attempt to be a complete solution, only
+providing the bare necessities for switching bundles and reloading the app. This
+requires you to implement the logic to download and keep track of the bundles
+yourself, but does give you complete freedom in how you implement your updater
+or A/B testing logic.
 
 ## To do's
-* Make an npm package out of this project.
-* Implement Android version of native code.
 * Have API calls to query the bundle registry from the JS side.
-* API docs. In the meanwhile, have a look at AppDelegate.{h,m} of the example.
-* Don't export the NativeModules directly, but have a simple JS wrapper around
-  them.
+* Explanations of how to set it up on the native side. In the meanwhile have
+  a look at AppDelegate.m for iOS and MainActivity.java / MainApplication.java
+  for Android.
+* Don't export the NativeModule directly, but have a simple JS wrapper around
+  it, with Flow annotations and API docs.
 * Have the example do more than just reload the current bundle.
 
 ## Getting started
