@@ -88,7 +88,7 @@ static NSURL *_defaultBundleURL = nil;
 - (void)setActiveBundle:(NSString *)bundleId
 {
     NSMutableDictionary *dict = [RNDynamicBundle loadRegistry];
-    dict[@"activeBundle"] = bundleId;
+    dict[@"activeBundle"] = bundleId == nil ? @"" : bundleId;
 
     [RNDynamicBundle storeRegistry:dict];
 }

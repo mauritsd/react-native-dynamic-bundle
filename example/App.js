@@ -45,8 +45,7 @@ export default class App extends Component<Props> {
   }
 
   _onReloadButtonPress = () =>{
-    // RNDynamicBundle.registerBundle('bla', 'test.jsbundle');
-    // RNDynamicBundle.setActiveBundle('bla');
+    RNDynamicBundle.setActiveBundle(null);
     RNDynamicBundle.reloadBundle();
   }
 }
