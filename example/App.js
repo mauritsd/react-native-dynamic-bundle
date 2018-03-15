@@ -8,21 +8,23 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  Text,
   View,
   Button,
+  TextInput
 } from 'react-native';
 import RNDynamicBundle from 'react-native-dynamic-bundle';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import RNFS from 'react-native-fs';
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      url: ""
+    }
+  }
+
   componentWillMount = () => {
 
   }
@@ -30,23 +32,28 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-        <Button onPress={this._onReloadButtonPress} title="RELOAD"/>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(url) => { this.setState({ url });}}
+          value={this.state.url}
+          autocorrect={false}
+          placeholder="URL"
+          autoCapitalize="none"
+          />
+        <Button onPress={this._onReloadButtonPress} title="LOAD"/>
       </View>
     );
   }
 
-  _onReloadButtonPress = () =>{
-    RNDynamicBundle.registerBundle("yolo", "trolo.bundle")
-    RNDynamicBundle.setActiveBundle("yolo");
+  _onReloadButtonPress = async () => {
+    const { promise } = RNFS.downloadFile({
+      fromUrl: this.state.url,
+      toFile: RNFS.DocumentDirectoryPath + "/test.bundle",
+    });
+    const result = await promise;
+
+    RNDynamicBundle.registerBundle('test', 'test.bundle');
+    RNDynamicBundle.setActiveBundle('test');
     RNDynamicBundle.reloadBundle();
   }
 }
@@ -58,14 +65,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  textInput: {
+    width: 250,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+  }
 });

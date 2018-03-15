@@ -8,7 +8,8 @@
   "dependencies": {
     "react": "^16.3.0-alpha.1",
     "react-native": "0.54.2",
-    "react-native-dynamic-bundle": "git+https://github.com/mauritsd/react-native-dynamic-bundle"
+    "react-native-dynamic-bundle": "git+https://github.com/mauritsd/react-native-dynamic-bundle",
+    "react-native-fs": "^2.9.11"
   },
   "devDependencies": {
     "babel-preset-react-native": "4.0.0"
