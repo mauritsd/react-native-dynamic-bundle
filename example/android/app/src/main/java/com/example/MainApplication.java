@@ -1,6 +1,7 @@
 package com.example;
 
 import android.app.Application;
+import android.net.Uri;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
@@ -44,7 +45,8 @@ public class MainApplication extends Application implements ReactApplication {
     @Nullable
     @Override
     protected String getJSBundleFile() {
-      return RNDynamicBundleModule.launchResolveBundleUrl(MainApplication.this);
+      Log.d("TEST", RNDynamicBundleModule.launchResolveBundlePath(MainApplication.this));
+      return RNDynamicBundleModule.launchResolveBundlePath(MainApplication.this);
     }
   };
 

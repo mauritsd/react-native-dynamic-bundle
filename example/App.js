@@ -40,7 +40,7 @@ export default class App extends Component<Props> {
           placeholder="URL"
           autoCapitalize="none"
           />
-        <Button onPress={this._onReloadButtonPress} title="LOAD"/>
+        <Button onPress={this._onReloadButtonPress} title="LOAD" />
       </View>
     );
   }

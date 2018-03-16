@@ -15,7 +15,7 @@ import java.io.File;
 
 public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
   public interface OnReloadRequestedListener {
-    void onReloadRequested(String url);
+    void onReloadRequested();
   }
 
   private final ReactApplicationContext reactContext;
@@ -26,7 +26,7 @@ public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
   /* Sadly need this to avoid a circular dependency in the ReactNativeHost
    * TODO: Refactor to avoid code duplication.
    */
-  public static String launchResolveBundleUrl(Context ctx) {
+  public static String launchResolveBundlePath(Context ctx) {
     SharedPreferences bundlePrefs = ctx.getSharedPreferences("_bundles", Context.MODE_PRIVATE);
     SharedPreferences extraPrefs = ctx.getSharedPreferences("_extra", Context.MODE_PRIVATE);
 
@@ -61,14 +61,7 @@ public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
     File absolutePath = new File(reactContext.getFilesDir(), relativePath);
 
     SharedPreferences.Editor editor = this.bundlePrefs.edit();
-    editor.putString(bundleId, Uri.fromFile(absolutePath).toString());
-    editor.commit();
-  }
-
-  @ReactMethod
-  public void registerBundleURL(String bundleId, String url) {
-    SharedPreferences.Editor editor = this.bundlePrefs.edit();
-    editor.putString(bundleId, url);
+    editor.putString(bundleId, absolutePath.getAbsolutePath());
     editor.commit();
   }
 
@@ -82,11 +75,11 @@ public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void reloadBundle() {
     if (listener != null) {
-      listener.onReloadRequested(null);
+      listener.onReloadRequested();
     }
   }
 
-  public String resolveBundleURL() {
+  public String resolveBundlePath() {
     String activeBundle = extraPrefs.getString("activeBundle", null);
     if (activeBundle == null) {
       return null;

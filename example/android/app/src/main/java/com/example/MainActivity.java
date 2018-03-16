@@ -49,7 +49,7 @@ public class MainActivity extends ReactActivity implements RNDynamicBundleModule
 
 
     @Override
-    public void onReloadRequested(String url) {
+    public void onReloadRequested() {
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
