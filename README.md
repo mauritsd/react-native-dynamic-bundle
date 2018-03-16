@@ -24,7 +24,7 @@ or A/B testing logic.
   for Android.
 * Don't export the NativeModule directly, but have a simple JS wrapper around
   it, with Flow annotations and API docs.
-* Have the example do more than just reload the current bundle.
+* Our reloading mechanism on Android does not seem to work...
 
 ## Getting started
 
