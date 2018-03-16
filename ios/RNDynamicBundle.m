@@ -46,12 +46,16 @@ static NSURL *_defaultBundleURL = nil;
     if ([activeBundle isEqualToString:@""]) {
         return _defaultBundleURL;
     }
-    NSString *bundleURLString = dict[@"bundles"][activeBundle];
-    if (bundleURLString == nil) {
+    NSString *bundleRelativePath = dict[@"bundles"][activeBundle];
+    if (bundleRelativePath == nil) {
         return _defaultBundleURL;
     }
     
-    return [NSURL URLWithString:bundleURLString];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:bundleRelativePath];
+    
+    return [NSURL fileURLWithPath:path];
 }
 
 + (void)setDefaultBundleURL:(NSURL *)URL
@@ -67,13 +71,8 @@ static NSURL *_defaultBundleURL = nil;
 
 - (void)registerBundle:(NSString *)bundleId atRelativePath:(NSString *)relativePath
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths firstObject];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:relativePath];
-    NSURL *URL = [NSURL fileURLWithPath:path];
-    
     NSMutableDictionary *dict = [RNDynamicBundle loadRegistry];
-    dict[@"bundles"][bundleId] = URL.absoluteString;
+    dict[@"bundles"][bundleId] = relativePath;
     [RNDynamicBundle storeRegistry:dict];
 }
 
@@ -93,13 +92,6 @@ static NSURL *_defaultBundleURL = nil;
     [RNDynamicBundle storeRegistry:dict];
 }
 
-- (void)registerBundle:(NSString *)bundleId atURL:(NSURL *)URL
-{
-    NSMutableDictionary *dict = [RNDynamicBundle loadRegistry];
-    dict[@"bundles"][bundleId] = URL.absoluteString;
-    [RNDynamicBundle storeRegistry:dict];
-}
-
 /* Make wrappers for everything that is exported to the JS side. We want this
  * because we want to call some of the methods in this module from the native side
  * as well, which requires us to put them into the header file. Since RCT_EXPORT_METHOD
@@ -114,11 +106,6 @@ RCT_REMAP_METHOD(reloadBundle, exportedReloadBundle)
 RCT_REMAP_METHOD(registerBundle, exportedRegisterBundle:(NSString *)bundleId atRelativePath:(NSString *)path)
 {
     [self registerBundle:bundleId atRelativePath:path];
-}
-
-RCT_REMAP_METHOD(registerBundleURL, exportedRegisterBundle:(NSString *)bundleId atURL:(NSURL *)URL)
-{
-    [self registerBundle:bundleId atURL:URL];
 }
 
 RCT_REMAP_METHOD(unregisterBundle, exportedUnregisterBundle:(NSString *)bundleId)
