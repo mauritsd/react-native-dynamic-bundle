@@ -1,6 +1,6 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Sample RNDynamicBundle app
+ * https://github.com/mauritsd/react-native-dynamic-bundle
  * @flow
  */
 
@@ -12,7 +12,12 @@ import {
   Button,
   TextInput
 } from 'react-native';
-import RNDynamicBundle from 'react-native-dynamic-bundle';
+import {
+  setActiveBundle,
+  registerBundle,
+  unregisterBundle,
+  reloadBundle
+} from 'react-native-dynamic-bundle';
 import RNFS from 'react-native-fs';
 
 type Props = {};
@@ -23,10 +28,6 @@ export default class App extends Component<Props> {
     this.state = {
       url: ""
     }
-  }
-
-  componentWillMount = () => {
-
   }
 
   render() {
@@ -52,9 +53,9 @@ export default class App extends Component<Props> {
     });
     const result = await promise;
 
-    RNDynamicBundle.registerBundle('test', 'test.bundle');
-    RNDynamicBundle.setActiveBundle('test');
-    RNDynamicBundle.reloadBundle();
+    registerBundle('test', 'test.bundle');
+    setActiveBundle('test');
+    reloadBundle();
   }
 }
 

@@ -25,5 +25,8 @@
   "peerDependencies": {
     "react-native": "*"
   },
-  "nativePackage": true
+  "nativePackage": true,
+  "devDependencies": {
+    "flow-bin": "^0.68.0"
+  }
 }

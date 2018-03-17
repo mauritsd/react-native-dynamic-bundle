@@ -22,9 +22,7 @@ or A/B testing logic.
 * Explanations of how to set it up on the native side. In the meanwhile have
   a look at AppDelegate.m for iOS and MainActivity.java / MainApplication.java
   for Android.
-* Don't export the NativeModule directly, but have a simple JS wrapper around
-  it, with Flow annotations and API docs.
-* Our reloading mechanism on Android does not seem to work...
+
 
 ## Getting started
 
@@ -67,23 +65,28 @@ or
 
 ## Usage
 ```javascript
-import RNDynamicBundle from 'react-native-dynamic-bundle';
+import {
+  setActiveBundle,
+  registerBundle,
+  unregisterBundle,
+  reloadBundle
+} from 'react-native-dynamic-bundle';
 
 /* Register a bundle in the documents directory of the app. This could be
  * pre-packaged in your app, downloaded over http, etc. Paths are relative
  * to your documents directory.
  */
-RNDynamicBundle.registerBundle('a_b_test', 'bundles/a_b_test.bundle');
+registerBundle('a_b_test', 'bundles/a_b_test.bundle');
 
 /* Set the active bundle to a_b_test. This means that on the next load
  * this bundle will be loaded instead of the default.
  */
-RNDynamicBundle.setActiveBundle('a_b_test');
+setActiveBundle('a_b_test');
 
 /* Unregister a bundle once you're done with it. Note that you will have to
  * remove the file yourself.
  */
-RNDynamicBundle.unregisterBundle('a_b_test');
+unregisterBundle('a_b_test');
 
 /* In some circumstances (e.g. the user consents to an update) we want to
  * force a bundle reload instead of waiting until the next app restart.
@@ -91,5 +94,5 @@ RNDynamicBundle.unregisterBundle('a_b_test');
  * RCTBridge and its recreation with the new bundle URL. It is therefore
  * recommended to sync data and let actions complete before calling this.
  */
-RNDynamicBundle.reloadBundle();
+reloadBundle();
 ```
