@@ -26,7 +26,8 @@
 - (void)registerBundle:(NSString *)bundleId atRelativePath:(NSString *)path;
 - (void)unregisterBundle:(NSString *)bundleId;
 - (void)setActiveBundle:(NSString *)bundleId;
-- (void)registerBundle:(NSString *)bundleId atURL:(NSURL *)URL;
+- (NSDictionary *)getBundles;
+- (NSString *)getActiveBundle;
 
 @end
   

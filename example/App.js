@@ -16,7 +16,9 @@ import {
   setActiveBundle,
   registerBundle,
   unregisterBundle,
-  reloadBundle
+  reloadBundle,
+  getActiveBundle,
+  getBundles,
 } from 'react-native-dynamic-bundle';
 import RNFS from 'react-native-fs';
 
@@ -55,6 +57,10 @@ export default class App extends Component<Props> {
 
     registerBundle('test', 'test.bundle');
     setActiveBundle('test');
+
+    const bundles = await getBundles();
+    const activeBundle = await getActiveBundle();
+
     reloadBundle();
   }
 }

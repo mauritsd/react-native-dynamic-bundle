@@ -92,6 +92,34 @@ static NSURL *_defaultBundleURL = nil;
     [RNDynamicBundle storeRegistry:dict];
 }
 
+- (NSDictionary *)getBundles
+{
+    NSMutableDictionary *bundles = [NSMutableDictionary dictionary];
+    NSMutableDictionary *dict = [RNDynamicBundle loadRegistry];
+    for (NSString *bundleId in dict[@"bundles"]) {
+        NSString *relativePath = dict[bundleId];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths firstObject];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:relativePath];
+        NSURL *URL = [NSURL fileURLWithPath:path];
+        
+        bundles[bundleId] = [URL absoluteString];
+    }
+    
+    return bundles;
+}
+
+- (NSString *)getActiveBundle
+{
+    NSMutableDictionary *dict = [RNDynamicBundle loadRegistry];
+    NSString *activeBundle = dict[@"activeBundle"];
+    if ([activeBundle isEqualToString:@""]) {
+        return nil;
+    }
+    
+    return activeBundle;
+}
+
 /* Make wrappers for everything that is exported to the JS side. We want this
  * because we want to call some of the methods in this module from the native side
  * as well, which requires us to put them into the header file. Since RCT_EXPORT_METHOD
@@ -116,6 +144,25 @@ RCT_REMAP_METHOD(unregisterBundle, exportedUnregisterBundle:(NSString *)bundleId
 RCT_REMAP_METHOD(setActiveBundle, exportedSetActiveBundle:(NSString *)bundleId)
 {
     [self setActiveBundle:bundleId];
+}
+
+RCT_REMAP_METHOD(getBundles,
+                 exportedGetBundlesWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    resolve([self getBundles]);
+}
+
+RCT_REMAP_METHOD(getActiveBundle,
+                 exportedGetActiveBundleWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *activeBundle = [self getActiveBundle];
+    if (activeBundle == nil) {
+        resolve([NSNull null]);
+    } else {
+        resolve(activeBundle);
+    }
 }
 
 RCT_EXPORT_MODULE()
