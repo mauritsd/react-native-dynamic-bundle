@@ -18,7 +18,6 @@ yourself, but does give you complete freedom in how you implement your updater
 or A/B testing logic.
 
 ## To do's
-* Have API calls to query the bundle registry from the JS side.
 * Explanations of how to set it up on the native side. In the meanwhile have
   a look at AppDelegate.m for iOS and MainActivity.java / MainApplication.java
   for Android.

@@ -6,10 +6,13 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.WritableMap;
 
 import java.io.File;
 
@@ -77,6 +80,24 @@ public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
     if (listener != null) {
       listener.onReloadRequested();
     }
+  }
+
+  @ReactMethod
+  public void getBundles(Promise promise) {
+    WritableMap bundles = Arguments.createMap();
+    for (String bundleId: bundlePrefs.getAll().keySet()) {
+      String path = bundlePrefs.getString(bundleId, null);
+      Uri url = Uri.fromFile(new File(path));
+
+      bundles.putString(bundleId, url.toString());
+    }
+
+    promise.resolve(bundles);
+  }
+
+  @ReactMethod
+  public void getActiveBundle(Promise promise) {
+    promise.resolve(extraPrefs.getString("activeBundle", null));
   }
 
   public String resolveBundlePath() {
