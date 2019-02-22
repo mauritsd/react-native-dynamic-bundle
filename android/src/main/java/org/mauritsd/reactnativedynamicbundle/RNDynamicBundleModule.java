@@ -17,7 +17,7 @@ import com.facebook.react.module.annotations.ReactModule;
 
 import java.io.File;
 
-@ReactModule(name = "RNDynamicBundleModule")
+@ReactModule(name = "RNDynamicBundle")
 public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
   public interface OnReloadRequestedListener {
     void onReloadRequested();
