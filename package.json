@@ -1,6 +1,6 @@
 {
   "name": "react-native-dynamic-bundle",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Control which bundle is loaded from the Javascript side of your React Native app.",
   "main": "index.js",
   "scripts": {
