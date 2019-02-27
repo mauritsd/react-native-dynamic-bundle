@@ -13,9 +13,11 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 
 import java.io.File;
 
+@ReactModule(name = "RNDynamicBundle")
 public class RNDynamicBundleModule extends ReactContextBaseJavaModule {
   public interface OnReloadRequestedListener {
     void onReloadRequested();
