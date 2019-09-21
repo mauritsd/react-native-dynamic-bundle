@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   RNDynamicBundle
                    DESC
-  s.homepage     = ""
+  s.homepage     = "https://github.com/mauritsd/react-native-dynamic-bundle"
   s.license      = "MIT"
   s.author       = { "author" => "mauritsdijkstra@gmail.com" }
   s.platform     = :ios, "7.0"
