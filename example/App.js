@@ -6,7 +6,6 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   View,
   Button,
@@ -15,7 +14,6 @@ import {
 import {
   setActiveBundle,
   registerBundle,
-  unregisterBundle,
   reloadBundle,
   getActiveBundle,
   getBundles,

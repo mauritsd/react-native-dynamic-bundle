@@ -3,15 +3,27 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "react": "^16.3.0-alpha.1",
-    "react-native": "0.54.2",
-    "react-native-dynamic-bundle": "git+https://github.com/mauritsd/react-native-dynamic-bundle",
-    "react-native-fs": "^2.9.11"
+    "react": "16.8.6",
+    "react-native": "0.60.5",
+    "react-native-fs": "^2.14.1"
   },
   "devDependencies": {
-    "babel-preset-react-native": "4.0.0"
+    "@babel/core": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.4.0",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-native-dynamic-bundle": "git+https://github.com/mauritsd/react-native-dynamic-bundle",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

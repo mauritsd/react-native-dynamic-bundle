@@ -3,7 +3,6 @@ package com.example;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.facebook.react.ReactActivity;
