@@ -6,7 +6,8 @@ Pod::Spec.new do |s|
   s.description    = <<-DESC
                   RNDynamicBundle
                    DESC
-  s.homepage       = ""
+
+  s.homepage       = "https://github.com/mauritsd/react-native-dynamic-bundle"
   s.license        = "MIT"
   s.author         = { "author" => "mauritsdijkstra@gmail.com" }
   s.platform       = :ios, "7.0"
@@ -14,7 +15,6 @@ Pod::Spec.new do |s|
   s.source_files   = '*.{h,m}'
   s.preserve_paths = "**/*.js"
   s.requires_arc   = true
-
 
   s.dependency "React"
   #s.dependency "others"
